@@ -1,0 +1,9 @@
+<h1>Login Form</h1>
+<%= flash.alert %>
+<div>
+<%= form_tag url_for :action => 'create',data: {turbo: false} do %>
+Username: <%= text_field_tag :user_name %>
+Password: <%= password_field_tag :password %>
+<%= submit_tag 'login' %>
+<% end %>
+</div>

@@ -1,0 +1,26 @@
+<%= form_tag '/subscriptions', method: :get do %>
+  <%= text_field_tag :query, '', placeholder: "Enter your search query" %>
+  <%= button_tag "Search", type: :submit %>
+<% end %>
+<table>
+  <thead>
+    <tr>
+    	<th>ID</th>
+      <th>Duration</th>
+      <th>Status</th>
+      <th>Magazine ID</th>
+      <th>Subscriber ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subscriptions.each do|subscription|%>
+      <tr>
+        <td><%= subscription.id%></td>
+        <td><%= subscription.duration%></td>
+        <td><%= subscription.status%></td>
+        <td><%= subscription.magazine_id%></td>
+        <td><%= subscription.subscriber_id%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

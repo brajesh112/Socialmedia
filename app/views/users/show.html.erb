@@ -1,0 +1,8 @@
+<%#= flash.alert %>
+<%#= cookies[:created_at]%>
+<%#= cookies[:date]%>
+<%#= @user.created_at %>
+<%= @user.user_name %>
+<%= @user.id %>
+<%= link_to "Logout", session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+<%#= link_to "Download", download_pdf_path %>

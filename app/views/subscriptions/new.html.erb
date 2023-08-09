@@ -1,0 +1,6 @@
+<%= form_tag url_for :action => 'create' do %>
+<%= text_field_tag 'status'%>
+<%= number_field_tag 'magazine_id' %>
+<%= number_field_tag 'subscriber_id' %>
+<%= submit_tag 'submit'%>
+<% end %>
