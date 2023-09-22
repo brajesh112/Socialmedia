@@ -1,0 +1,1 @@
+$("#post_comment<%= @comment.post_id%>").html($("<%=escape_javascript(render 'comments/new', post: @comment.post)%>"));

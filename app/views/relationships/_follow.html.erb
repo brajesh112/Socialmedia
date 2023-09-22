@@ -1,0 +1,5 @@
+<% if Relationship.where(followed_id: user.id, follower_id: session[:user_id]).present? %>
+	<%= link_to "Following", relationships_path(user_id: user), method: :post , :remote=> true,class: "btn  btn-outline-secondary" %>
+<% else %> 
+	<%= link_to "Follow", relationships_path(user_id: user), method: :post , :remote=> true, class: "btn btn-primary" %>
+<% end %>

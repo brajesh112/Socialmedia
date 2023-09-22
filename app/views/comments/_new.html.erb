@@ -1,0 +1,35 @@
+<hr>
+<div class="d-flex justify-content-center my-2">
+	<%= form_for Comment.new, url: comments_path(), method: :post, :remote => true do |f| %>
+		<%= f.hidden_field :post_id, :value => post.id %>
+		<div class="field d-flex">
+			<%= f.text_field :body, class: "form-control" %>
+			<%= f.submit "comment", id:"post-submit" ,class: "btn btn-primary "%> 
+	  </div>
+	<% end %>
+</div>
+<% if post.comments.present? %> 
+	<%if params[:action].eql?("index")%>
+		<p><%= image_tag post.comments.last.user.avatar, {height: 25, width: 25} %>
+		<b class="px-2"><%=post.comments.last.user.user_name%></b>
+		</p>
+		<p><%= post.comments.last.body%></p>
+		<%= link_to "see all..", post_path(id: post,:format => "js"),:remote => true %>
+	<%else %>
+		<% post.comments.order(created_at: :DESC).each do |comment| %>
+			<p><%= image_tag comment.user.avatar, {height: 25, width: 25} %>
+			<b class="px-2"><%=comment.user.user_name%></b></p>
+			<p>
+				<%= comment.body%>
+			</p>
+		<% end %>	
+	<%end %>
+<% end %>
+
+<script type="text/javascript">
+  function AllComments(id) {
+    var element = document.getElementById("post-comment"+id);
+    element.classList.toggle("d-none");
+  }
+</script>
+

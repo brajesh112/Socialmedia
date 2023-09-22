@@ -1,0 +1,29 @@
+<div class="card my-4" style="width: 25rem;">
+  <div class="post_header">
+    <span style="width: 70%;display: flex;">
+      <%= image_tag post.user.avatar, {height: 35, width: 35} %>
+      <h5 class="card-title" style="padding: 0 20px;"><%= post.user.user_name %></h5>
+    </span>
+    <span>
+      <%= distance_of_time_in_words(DateTime.now.utc, post.created_at)%>
+    </span>
+  </div>
+  <div class="card-body">
+    <%= image_tag post.image,{class: "card-img-top"}%>
+    <div id= "post_<%=post.id%>" class= "content_align">
+    	<%= render "likes/like", post: post%>
+    </div>
+    <p class="card-text"><b style="padding: 0 5px;"><%=post.user.user_name%></b><%= post.description %></p>
+    <div id="post_comment<%=post.id%>" class="d-none">
+    	<%= render "comments/new", post: post%>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function myFunction(post) {
+    var element = document.getElementById("post_comment"+post);
+    element.classList.toggle("d-none");
+  }
+</script>

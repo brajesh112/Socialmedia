@@ -1,0 +1,28 @@
+<%= render "partials/header"%>
+<% if session[:user_id].present? %>
+	<div id="posts">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  		Add Post
+		</button>
+<!-- 		<button type="button" onclick="new_post()">Create Post</button>
+	  <div id="post" class="d-none"> -->
+			<%= render :partial => "/partials/new"%>
+			<%= render :partial =>"/saved_posts/saved_post", posts: @posts %> 
+	  <!-- </div> -->
+		<!-- <div id="post-index" style= "margin: 0 492px; padding: 0 300px;">  
+		  <%# @posts.each do |post| %>
+				<%#= render "/posts/post", post: post %>
+		  <%# end %>
+		</div> -->
+	</div>
+<% else %>	
+	<%= render :partial => "/sessions/login"%>
+<% end %>
+
+
+<script type="text/javascript">
+  function new_post() {
+    var element = document.getElementById("post");
+    element.classList.toggle("d-none");
+  }
+</script>

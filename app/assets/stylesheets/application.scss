@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+@import "jquery-ui.css";
+@import "bootstrap";
+@import "font-awesome";
+
+.container{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.logins{
+	width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn{
+	margin: 0 4px;
+}
+.icon_font{
+	font-size: 27px;
+}
+body{
+	background-image: url("pexels-photo-952670.jpeg");
+}
+.label_color{
+	color: white;
+}
+
+.content_align{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0 0 0;
+}
+.followlist{
+	display: flex;
+	justify-content: space-around;
+}
+.post_header{
+  display: flex;
+  padding: 16px 0 10px 9px;
+  background: #e78787;
+  border-radius: 5px;
+}

@@ -1,0 +1,5 @@
+<div id="post-index" style= "margin: 0 492px; padding: 0 300px;">  
+  <% @posts.each do |post| %>
+    <%= render "/posts/post", post: post %>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center" id= "login_form">
+	<%= form_for User.new, url: sessions_path(), method: :post do |f| %>
+		<div class="field">
+			<%= f.label :user_name, class: "label_color" %>
+			<%= f.text_field :user_name, class: "form-control" %>
+		</div>
+		<div class="field">
+			<%= f.label :password, class: "label_color" %>
+			<%= f.password_field :password,class: "form-control" %>
+		</div>
+		<div class="field">
+			<%= f.submit "Login", id:"post-submit" ,class: "btn btn-primary btn-lg btn-block"%> 
+	  </div>
+	<% end %>
+</div>
+	<!-- <button id= "hide" class= "btn btn-primary btn-lg btn-block">Signup</button>
+<div class="d-flex justify-content-center">
+	<div id="signup_form" class="d-none">
+    	<%#= render "users/signup"%>
+  </div>
+</div> -->

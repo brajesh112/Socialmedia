@@ -1,29 +1,65 @@
 require  "prawn"
 class UsersController < ApplicationController
-	skip_before_action :require_login, only: [:signup, :create]
+	# skip_before_action :require_login, only: [:signup, :create]
+	def index
+		@users = User.where("id != ?", current_user.id)
+		@users = User.where(id: current_user.id) if params[:id].present?
+	end
+
 	def new
-		@user = User.new
+	end
+
+	def edit
+	@user = User.find(params[:id])
+	end
+
+	def update
+		@user = User.find(params[:id])
+		@user.avatar.attach(user_params[:avatar])
+		@user.save
 	end
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
-			# session[:user_id] = @user.id
-			# cookies[:created_at] = @user.created_at
-			redirect_to root_path
-		else
-			render 'new'
-		end
+		  respond_to do |format|
+      if @user.save
+      	session[:user_id] = @user.id
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.with(user: @user).welcome_email.deliver_now
+
+        format.html { redirect_to(root_path, notice: 'User was successfully created.') }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+		# if @user.save
+		# 	# session[:user_id] = @user.id
+		# 	# cookies[:created_at] = @user.created_at
+		# 	redirect_to root_path
+		# else
+		# 	render 'new'
+		# end
 	end
 
 	def show
-		@user = User.find(params[:id])
-		respond_to do |format|
-      format.html
-      byebug
-      format.pdf { render pdf: generate_pdf(@user) }
-    end
-	end
+		@user = current_user
+		# respond_to do |format|
+  #     format.html
+  #     format.pdf { render pdf: generate_pdf(@user) }
+  #   end
+
+  # response.headers['Content-Type'] = 'text/event-stream'
+  #   5.times {
+  #     response.stream.write "hello world\n"
+  #     sleep 1
+  #   }
+	 #  ensure
+  #   response.stream.close
+  end
+
+
 
  # def download_pdf
  #    user = User.find(session[:user_id])
@@ -46,6 +82,6 @@ class UsersController < ApplicationController
     end
 
 	def user_params
-		params.require(:user).permit(:user_name, :password, :password_confirmation)
+		params.require(:user).permit(:user_name, :password, :password_confirmation, :avatar, :email)
 	end
 end
