@@ -1,12 +1,11 @@
 <%= render "partials/header"%>
 <% if session[:user_id].present? %>
 	<div id="posts">
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   		Add Post
-		</button>
+		</button> -->
 <!-- 		<button type="button" onclick="new_post()">Create Post</button>
 	  <div id="post" class="d-none"> -->
-			<%= render :partial => "/partials/new"%>
 			<%= render :partial =>"/saved_posts/saved_post", posts: @posts %> 
 	  <!-- </div> -->
 		<!-- <div id="post-index" style= "margin: 0 492px; padding: 0 300px;">  
@@ -14,6 +13,21 @@
 				<%#= render "/posts/post", post: post %>
 		  <%# end %>
 		</div> -->
+	</div>
+	<%= render :partial => "/partials/new"%>
+	<div></div>
+	<div></div>
+	<div class="d-flex justify-content-center bottom_box">
+		<a class="btn bottom_buttons" href="/"><i class="fa-solid fa-house"></i></a>
+	<!-- 	<button class="btn" style="width: 25%"><i class="fa-solid fa-house"></i></button> -->
+	  <%= link_to "<i class='fa-solid fa-magnifying-glass'></i>".html_safe, users_path(:format => "js"), method: :get, :remote=> true, class: "btn bottom_buttons" %>
+		<!-- <button class="btn" style="width: 25%"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+		<button type="button" class="btn bottom_buttons" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  		<i class="fa-regular fa-square-plus"></i>
+		</button>
+<!-- 		<button class="btn" style="width: 25%"><i class="fa-regular fa-square-plus"></i></button> -->
+ 		<%= link_to user_image, users_path(id: session[:user_id], :format => "js"),:remote => true, class: "btn bottom_buttons" %>
+		<!-- <button class="btn bottom_buttons"> <%= user_image %></button> -->
 	</div>
 <% else %>	
 	<%= render :partial => "/sessions/login"%>

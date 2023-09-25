@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center my-2">
+	<%= form_for Comment.new, url: comments_path(), method: :post, :remote => true do |f| %>
+		<%= f.hidden_field :comment_id, :value => comment.id %>
+		<div class="field d-flex">
+			<%= f.text_field :body, class: "form-control" %>
+			<%= f.submit "reply", id:"post-submit" ,class: "btn btn-primary "%> 
+	  </div>
+	<% end %>
+</div>
+<div class="mx-4">
+	<% if comment.replies.present? %>
+		<% comment.replies.order(created_at: :DESC).each do |reply| %>
+			<p><%= image_tag reply.user.avatar, {height: 25, width: 25} %>
+			<b class="px-2"><%=reply.user.user_name%></b>
+			</p>
+			<div class="comment_like"><%= reply.body %>
+				<div id ="comments-likes<%=reply.id%>" >
+					<%= render "comments/comment_likes", comment:reply %>
+				</div>
+			</div>
+			<span class="mx-4" style="font-size: 15px;">
+				<%= distance_of_time_in_words(DateTime.now.utc, reply.created_at)%>
+			</span>
+		<% end %>
+	<% end %>
+</div>

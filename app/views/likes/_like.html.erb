@@ -8,11 +8,24 @@
 	<%= post.likes.count %>
 </div>
 <div>
-	<a onclick="myFunction(<%= post.id %>)" style= "padding: 0 20px;"> <i class="fa-regular fa-comment icon_font"></i></a>
-
+	<a onclick="myFunction(<%= post.id %>)" style= "padding: 0 20px;"> <i class="fa-regular fa-comment icon_font"></i><%= post.comments.count %></a>
+<%# byebug %>
 	<% if SavedPost.where(user_id: session[:user_id], post_id: post.id).present? %>
 		<%= link_to "<i class='fa-solid fa-bookmark icon_font'></i>".html_safe, saved_posts_path(post_id: post.id), method: :post , :remote=> true %>
 	<% else %>
 	 <%= link_to "<i class='fa-regular fa-bookmark icon_font'></i>".html_safe, saved_posts_path(post_id: post.id), method: :post , :remote=> true %>
 	<% end %>
 </div>
+
+
+<script>
+	var btns = document.getElementsByClassName("fa-bookmark");
+	for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  if (current[0].text == "Saved"){
+  	btns[0].parentElement.href+="&value=Saved";
+  }
+  });
+}
+</script>

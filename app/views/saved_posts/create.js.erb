@@ -1,1 +1,1 @@
-$("#post_<%=@post.id %>").html($("<%=escape_javascript(render 'likes/like', post: @post)%>"))
+$("#posts").html($("<%=escape_javascript(render 'saved_posts/saved_post', posts: @posts)%>"))

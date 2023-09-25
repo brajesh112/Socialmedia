@@ -1,6 +1,6 @@
-<div id="post-index" style= "margin: 0 492px; padding: 0 300px;">  
+<div id="user-index" class="user-content main-content">  
   <% users.each do |user| %>
-		<div class="card my-4" style="width: 25rem;">
+		<div class="card my-2" style="width: 35rem;">
 			<div class="card-body">
 				<div class="content_align"> 
 					<%= image_tag user.avatar, {height: 55, width: 55} %>
@@ -14,14 +14,20 @@
 		    <div class="followlist">
 			    <p>Followers </p>
 			    <P>Following </p>
+			    <p>Posts</p>
 			  </div>
 			  <div class="followlist">
 			    <p><%= user.passive_relationships.count%></p>
 			    <p>
 			     <%= user.active_relationships.count %>
 			    </p>
+			    <p>
+			     <%= user.posts.count %>
+			    </p>
 		  	</div>
 		  </div>
 		</div>
   <% end %>
+
+  
 </div>

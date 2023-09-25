@@ -1,1 +1,6 @@
-$("#post_<%=@post.id %>").html($("<%=escape_javascript(render 'likes/like', post: @post)%>"))
+<% if @comment.present? %>
+	debugger
+	$("#comments-likes<%=@comment.id%>").html($("<%=escape_javascript(render 'comments/comment_likes', comment: @comment)%>"))
+<% else %>
+	$("#post_<%=@post.id %>").html($("<%=escape_javascript(render 'likes/like', post: @post)%>"))
+<% end %>

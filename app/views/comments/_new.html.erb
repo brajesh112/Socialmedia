@@ -13,22 +13,43 @@
 		<p><%= image_tag post.comments.last.user.avatar, {height: 25, width: 25} %>
 		<b class="px-2"><%=post.comments.last.user.user_name%></b>
 		</p>
-		<p><%= post.comments.last.body%></p>
+		<div class="comment_like"><%= post.comments.last.body%>
+			<div id ="comments-likes<%=post.comments.last.id%>">
+				<%= render "comments/comment_likes", comment: post.comments.last %>
+			</div>
+		</div>
+		<span class="mx-4" style="font-size: 15px;">
+		<%= distance_of_time_in_words(DateTime.now.utc, post.comments.last.created_at)%>
+		</span>
+		<a class="d-block my-0 pe-auto" onclick="commentreply(<%=post.comments.last.id %>)">reply</a>
+		<div class="d-none" id="comments-reply<%=post.comments.last.id%>">
+			<%= render "comments/comment_reply", comment: post.comments.last%>
+		</div>
 		<%= link_to "see all..", post_path(id: post,:format => "js"),:remote => true %>
 	<%else %>
 		<% post.comments.order(created_at: :DESC).each do |comment| %>
 			<p><%= image_tag comment.user.avatar, {height: 25, width: 25} %>
 			<b class="px-2"><%=comment.user.user_name%></b></p>
-			<p>
+			<div class="comment_like">
 				<%= comment.body%>
-			</p>
+				<div id ="comments-likes<%=comment.id%>" >
+					<%= render "comments/comment_likes", comment:comment %>
+				</div>
+			</div>
+			<span class="mx-4" style="font-size: 15px;">
+      	<%= distance_of_time_in_words(DateTime.now.utc, comment.created_at)%>
+   		</span>
+			<a class="d-block my-0 pe-auto" onclick="commentreply(<%=comment.id %>)">reply</a>
+			<div class="d-none" id="comments-reply<%=comment.id%>">
+				<%= render "comments/comment_reply", comment: comment%>
+			</div>
 		<% end %>	
 	<%end %>
 <% end %>
 
 <script type="text/javascript">
-  function AllComments(id) {
-    var element = document.getElementById("post-comment"+id);
+  function commentreply(id) {
+    var element = document.getElementById("comments-reply"+id);
     element.classList.toggle("d-none");
   }
 </script>
