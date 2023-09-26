@@ -1,11 +1,11 @@
-<div id="user-index" class="user-content main-content">  
+<div id="post-index" class="main-content user-content">  
   <% users.each do |user| %>
 		<div class="card my-2" style="width: 35rem;">
 			<div class="card-body">
 				<div class="content_align"> 
 					<%= image_tag user.avatar, {height: 55, width: 55} %>
 		    	<p id="follow">
-		    		<%= render "/relationships/follow", user: user if user.id != session[:user_id]%>
+		    		<%= render "/relationships/follow", user: user%>
 		    	</p>
 		    </div>
 		    <h5 class="card-title"><%= user.user_name %></h5>
@@ -27,7 +27,5 @@
 		  	</div>
 		  </div>
 		</div>
-  <% end %>
-
-  
+  <% end %>  
 </div>

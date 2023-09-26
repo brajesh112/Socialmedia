@@ -6,6 +6,7 @@ class LikesController < ApplicationController
 		else
 			@post = Post.find_by(id: params[:post_id])
 			@like = @post.likes.where(user_id: current_user.id).present? ?  Like.delete(@post.likes.where(user_id: current_user.id)) : @post.likes.create(user_id: current_user.id)
+			@posts = Post.all
 		end
 		respond_to do |format|
 	    format.js

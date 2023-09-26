@@ -46,7 +46,6 @@ body{
 .content_align{
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	padding: 20px 0 0 0;
 }
 .followlist{
@@ -72,15 +71,17 @@ body{
 	margin: 0 660px; 
 	padding: 0 8px;
 	border: 6px solid white;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 100vh;
 }
 .user-content{
-	margin: 0 666px !important; 
+	margin: 0 666px !important;
 }
 .comment_field{
-  width: 80%;
+  width: 100%;
   margin: auto;
   padding: 0 20px;
-  border: 1px solid black;
 }
 .bottom_buttons{
 	width: 25%;
@@ -91,6 +92,26 @@ body{
 	position: fixed;
 	bottom: 0;
 	left: 35%; 
-	width: 30%; 
+	width: 35rem; 
 	background: #72777b85;
+}
+.new_comment{
+	width: 100% !important;
+}
+
+.active{
+	border: none !important;
+}
+
+.user-actions{
+	background: #72777b85;
+	height: 75px;
+	display: flex;
+	justify-content: space-around;
+	padding: 20px 0 0 0;
+}
+.user-images{
+	border: 2px solid white;
+	border-radius: 17px;
+	margin: 0 0 12px 0;
 }

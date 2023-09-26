@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 	# skip_before_action :require_login, only: [:signup, :create]
 	def index
 		@users = User.where("id != ?", current_user.id)
-		@users = User.where(id: current_user.id) if params[:id].present?
 	end
 
 	def new
@@ -44,7 +43,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = current_user
+		@user = User.where(id: params[:id])
 		# respond_to do |format|
   #     format.html
   #     format.pdf { render pdf: generate_pdf(@user) }

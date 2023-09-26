@@ -1,6 +1,6 @@
 <div class="card my-2" style="width: 35rem;">
   <div class="post_header">
-    <span style="width: 85%;display: flex;">
+    <span style="width: 80%;display: flex;">
       <%= image_tag post.user.avatar, {height: 35, width: 35} %>
       <h5 class="card-title" style="padding: 0 20px;"><%= post.user.user_name %></h5>
     </span>
@@ -15,16 +15,8 @@
     	<%= render "likes/like", post: post%>
     </div>
     <p class="card-text"><b style="padding: 0 5px;"><%=post.user.user_name%></b><%= post.description %></p>
-    <div id="post_comment<%=post.id%>" class="d-none comment_field">
+    <div id="post_comment<%=post.id%>" class="comment_field">
     	<%= render "comments/new", post: post%>
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript">
-  function myFunction(post) {
-    var element = document.getElementById("post_comment"+post);
-    element.classList.toggle("d-none");
-  }
-</script>

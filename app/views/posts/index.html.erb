@@ -1,4 +1,4 @@
-<%= render "partials/header"%>
+<%#= render "partials/header"%>
 <% if session[:user_id].present? %>
 	<div id="posts">
 		<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -18,7 +18,7 @@
 	<div></div>
 	<div></div>
 	<div class="d-flex justify-content-center bottom_box">
-		<a class="btn bottom_buttons" href="/"><i class="fa-solid fa-house"></i></a>
+		<a class="btn bottom_buttons active" href="/"><i class="fa-solid fa-house"></i></a>
 	<!-- 	<button class="btn" style="width: 25%"><i class="fa-solid fa-house"></i></button> -->
 	  <%= link_to "<i class='fa-solid fa-magnifying-glass'></i>".html_safe, users_path(:format => "js"), method: :get, :remote=> true, class: "btn bottom_buttons" %>
 		<!-- <button class="btn" style="width: 25%"><i class="fa-solid fa-magnifying-glass"></i></button> -->
@@ -26,7 +26,7 @@
   		<i class="fa-regular fa-square-plus"></i>
 		</button>
 <!-- 		<button class="btn" style="width: 25%"><i class="fa-regular fa-square-plus"></i></button> -->
- 		<%= link_to user_image, users_path(id: session[:user_id], :format => "js"),:remote => true, class: "btn bottom_buttons" %>
+ 		<%= link_to user_image, user_path(id: session[:user_id], :format => "js"),method: :get, :remote => true, class: "btn bottom_buttons" %>
 		<!-- <button class="btn bottom_buttons"> <%= user_image %></button> -->
 	</div>
 <% else %>	
@@ -39,4 +39,13 @@
     var element = document.getElementById("post");
     element.classList.toggle("d-none");
   }
+
+var btns = document.getElementsByClassName("bottom_buttons");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
 </script>
