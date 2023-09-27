@@ -54,7 +54,7 @@ gem "bootstrap"
  gem 'jquery-rails'
  gem 'jquery-ui-rails'
  gem "font-awesome-sass", "~> 6.4.2"
-
+ gem 'active_storage_validations'
 
 # gem 'ruby-vips', '~> 2.1', '>= 2.1.4'
 group :development, :test do

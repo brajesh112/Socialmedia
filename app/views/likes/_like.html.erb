@@ -21,16 +21,3 @@
 	 <%= link_to "<i class='fa-regular fa-bookmark icon_font'></i>".html_safe, saved_posts_path(post_id: post.id), method: :post , :remote=> true %>
 	<% end %>
 </div>
-
-
-<!-- <script>
-	var btns = document.getElementsByClassName("fa-bookmark");
-	for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  if (current[0].href != 'http://localhost:3000/'){
-  	this.offsetParent.classList.add("d-none")
-  }
-  });
-}
-</script> -->

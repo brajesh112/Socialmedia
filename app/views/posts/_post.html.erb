@@ -10,7 +10,7 @@
   </div>
   
   <div class="card-body">
-    <%= image_tag post.image,{class: "card-img-top"}%>
+    <%= post_type(post)%>
     <div id= "post_<%=post.id%>" class= "content_align">
     	<%= render "likes/like", post: post%>
     </div>

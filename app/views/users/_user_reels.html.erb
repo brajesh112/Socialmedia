@@ -1,0 +1,9 @@
+<div class="row my-2 mx-2">
+  <% posts.each do |post| %>
+     <% if post.image.content_type.eql?("video/mp4")%> 
+    	<div class="col-sm-4">
+        <%=link_to (video_tag url_for(post.image),{class: "card-img-top user-images" , size: "200x150"}), post_path(id: post,:format => "js"),:remote => true%>
+    	</div>
+    <% end %>
+  <% end %>
+</div>

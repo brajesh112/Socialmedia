@@ -1,5 +1,19 @@
 <% if Relationship.where(followed_id: user.id, follower_id: session[:user_id]).present? %>
-	<%= link_to "Following", relationships_path(user_id: user), method: :post , :remote=> true,class: "btn  btn-outline-secondary" %>
+	<%= link_to "Following", relationships_path(user_id: user), method: :post , :remote=> true,class: "follow_button btn  btn-outline-secondary" %>
 <% else %> 
-	<%= link_to "Follow", relationships_path(user_id: user), method: :post , :remote=> true, class: "btn btn-primary" %>
+	<%= link_to "Follow", relationships_path(user_id: user), method: :post , :remote=> true, class: "follow_button btn btn-primary" %>
 <% end %>
+
+
+<script>
+	var btns = document.getElementsByClassName("follow_button");
+	for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  if (current[0].href == 'http://localhost:3000/users/<%=session[:user_id]%>.js'){
+  	debugger
+  	this.href +="&value=1"
+  }
+  });
+}
+</script>

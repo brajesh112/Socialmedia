@@ -22,6 +22,21 @@ module ApplicationHelper
 		Post.joins(:saved_posts).where("saved_posts.user_id"=> user)
 	end
 	def followers_user(user)
-		User.joins(:active_relationships).where("relationships.followed_id"=>user.id)
+		User.joins(:active_relationships).where("relationships.followed_id"=>user)
+	end
+	def following_user(user)
+		User.joins(:passive_relationships).where("relationships.follower_id"=>user)
+	end
+
+	def post_type(post)
+		if post.image.content_type.eql?("video/mp4") 
+			video_tag url_for(post.image), size: "528",controls: true
+		else
+			image_tag post.image, size: "528x500"
+		end
+	end
+
+	def taged_post(user)
+		Post.joins(:tags).where("tags.user_id"=>user)
 	end
 end

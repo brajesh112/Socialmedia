@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_105709) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_27_105632) do
   create_table "accounts", force: :cascade do |t|
     t.string "user_name"
     t.integer "user_id"
@@ -84,6 +84,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_105709) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "posts_tags", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_posts_tags_on_post_id"
+    t.index ["tag_id"], name: "index_posts_tags_on_tag_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -118,6 +127,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_105709) do
     t.datetime "updated_at", null: false
     t.index ["magazine_id"], name: "index_subscriptions_on_magazine_id"
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

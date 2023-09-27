@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="exampleModalLabel">New Post</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-			<%= form_for @post, url: posts_path(), method: :post, :remote => true do |f| %>
+			<%= form_for @post, url: posts_path(), method: :post, :remote => true, multiple: true do |f| %>
       	<div class="modal-body">
       		<div>
 						<div class="field">
@@ -15,6 +15,12 @@
 						<div class="field">
 							<%= f.label :description %>
 							<%= f.text_field :description,class: "form-control" %>
+						</div>
+						<div class="field">
+							<%= f.label :tags %>
+							<%# aa = [] %>
+							<%#= f.collection_select :tags, following_user(session[:user_id]),:id, :user_name, input_html:{multiple: true}, class: "form-control" %>
+							<%= f.select(:tags, following_user(session[:user_id]).collect{|a| [a.user_name, a.id]},:multiple => true)%>
 						</div>
 					</div>
       	</div>

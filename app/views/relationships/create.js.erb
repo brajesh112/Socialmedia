@@ -1,1 +1,5 @@
-$("#posts").html($("<%=escape_javascript(render 'users/users', users: @users )%>"))
+<% if params[:value].present? %>
+	$("#posts").html($("<%= escape_javascript(render 'users/user_profile',users: @user) %>"))
+<% else %>
+	$(".follow_<%=@user.id%>").html($("<%=escape_javascript(render 'relationships/follow', user: @user )%>"))
+<% end %>

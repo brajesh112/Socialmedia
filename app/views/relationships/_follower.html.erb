@@ -1,11 +1,12 @@
-<%users = followers_user(user)%>
+<%users = followers_user(user.id)%>
+<%users = following_user(user.id) if value.present? %>
 <% users.each do |user| %>
 	<div class="card my-2" style="width: 35rem;">
 		<div class="card-body">
 			<div class="content_align"> 
 				<%= image_tag user.avatar, {height: 45, width: 45} %>
-	    	<p id="follow">
-	    		<%= render "/relationships/follow", user: user%>
+	    	<p class="follow_<%=user.id%>">
+	    		<%= render "/relationships/follow", user: user %>
 	    	</p>
 	    </div>
 	    <h5 class="card-title"><%= user.user_name %></h5>

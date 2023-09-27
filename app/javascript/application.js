@@ -11,4 +11,7 @@ $(document).ready(function(){
 	$("#hide").click(function(){
 	  $("#signup_form").toggleClass("d-none");
 	});
+	new SlimSelect({
+	  select: '#post_tags'
+	});
 });

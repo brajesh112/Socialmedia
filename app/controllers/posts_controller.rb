@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 	def create
 		@post =  current_user.posts.new(post_params)
 		@post.save
+		@post.tags.create(user_id: params[:post][:tags])
 		respond_to do |format|
 	    format.js
 	  end
