@@ -10,7 +10,11 @@ class PostsController < ApplicationController
 	def create
 		@post =  current_user.posts.new(post_params)
 		@post.save
-		@post.tags.create(user_id: params[:post][:tags])
+		a = params[:post][:tags].compact_blank!
+		for i in 0..a.size
+			@tag = Tag.find_or_create_by(user_id: a[i])
+			@tag.posts << @post
+		end
 		respond_to do |format|
 	    format.js
 	  end

@@ -20,7 +20,8 @@
 							<%= f.label :tags %>
 							<%# aa = [] %>
 							<%#= f.collection_select :tags, following_user(session[:user_id]),:id, :user_name, input_html:{multiple: true}, class: "form-control" %>
-							<%= f.select(:tags, following_user(session[:user_id]).collect{|a| [a.user_name, a.id]},:multiple => true)%>
+							<%= f.select(:tags, following_user(session[:user_id]).collect{|a| [a.user_name, a.id]},{prompt: "Please select"},{ :multiple => true, class: "form-control" }) %>
+							<%#= f.select(:tags, following_user(session[:user_id]).collect{|a| [a.user_name, a.id]},:multiple => true, class: "form-control")%>
 						</div>
 					</div>
       	</div>
